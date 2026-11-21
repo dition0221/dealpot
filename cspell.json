@@ -1,0 +1,25 @@
+{
+  "version": "0.2",
+  "ignorePaths": ["node_modules", ".next", "out", "coverage", "pnpm-lock.yaml"],
+  "words": [
+    "dealpot",
+    "dition",
+    "supabase",
+    "Pretendard",
+    "pretendard",
+    "tanstack",
+    "reactquery",
+    "tailwindcss",
+    "nextdotjs",
+    "nodedotjs",
+    "biomejs",
+    "bradlc",
+    "esbenp",
+    "dbaeumer",
+    "lucide",
+    "Entra",
+    "citext",
+    "plpgsql",
+    "Vercel"
+  ]
+}

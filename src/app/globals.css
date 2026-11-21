@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* 딜팟 디자인 토큰 — 디자인 시스템 artifact의 tokens.json과 같은 값
+   규칙: 화면/컴포넌트는 의미 토큰(bg-page, surface, text-*, accent …)만 쓴다.
+   다크 테마는 나중에 [data-theme="dark"]에서 의미 토큰만 덮어쓴다. */
+@theme {
+  --color-*: initial;
+  --color-primary-50: #e0f6ff;
+  --color-primary-100: #b6dff0;
+  --color-primary-200: #98c6d8;
+  --color-primary-300: #7badc1;
+  --color-primary-400: #5e95ab;
+  --color-primary-500: #407e94;
+  --color-primary-600: #2d667a;
+  --color-primary-700: #1a4f61;
+  --color-primary-800: #073948;
+  --color-primary-900: #00232f;
+  --color-primary-950: #001017;
+  --color-neutral-50: #edf3f6;
+  --color-neutral-100: #d2d8dc;
+  --color-neutral-200: #b8bfc3;
+  --color-neutral-300: #9fa6aa;
+  --color-neutral-400: #868d92;
+  --color-neutral-500: #6e767a;
+  --color-neutral-600: #585f63;
+  --color-neutral-700: #42494c;
+  --color-neutral-800: #2e3437;
+  --color-neutral-900: #1b2023;
+  --color-neutral-950: #0a0e10;
+  --color-danger-50: #ffedef;
+  --color-danger-600: #c43e49;
+  --color-white: #ffffff;
+  --color-bg-page: var(--color-neutral-50);
+  --color-surface: var(--color-white);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-text-used: var(--color-neutral-400);
+  --color-border: var(--color-neutral-100);
+  --color-accent: var(--color-primary-600);
+  --color-danger: var(--color-danger-600);
+  --color-fill-cta: var(--color-neutral-900);
+  --color-bg-thumb: var(--color-primary-100);
+  --color-bg-avatar: var(--color-primary-50);
+  --color-bg-skeleton: var(--color-neutral-100);
+  --color-text-on-accent: var(--color-white);
+  --color-text-on-cta: var(--color-white);
+  --color-fill-cta-hover: var(--color-neutral-800);
+  --color-icon-muted: var(--color-neutral-400);
+  --color-pay-outline: rgba(0, 0, 0, 0.18);
+  --color-bg-row-hover: var(--color-neutral-50);
+  --color-fill-toast: var(--color-neutral-900);
+  --color-text-on-toast: var(--color-white);
+  --color-text-toast-action: var(--color-primary-200);
+  --color-pay-naver: #03c75a;
+  --color-pay-kakao: #ffe300;
+  --color-pay-toss: #0064ff;
+
+  /* 타이포: 짝수 5단계 */
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-heading: 20px;
+  --text-heading--line-height: 28px;
+  --text-display: 24px;
+  --text-display--line-height: 32px;
+
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+
+  /* 반경 2단계 + 원 */
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+
+  /* 트랜지션 2개 */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  --font-sans: var(--font-pretendard), system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    letter-spacing: -0.015em;
+  }
+  body {
+    background: var(--color-bg-page);
+    color: var(--color-text-primary);
+  }
+  /* Tailwind v4는 버튼 기본 커서가 pointer가 아님 */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :disabled {
+    cursor: not-allowed;
+  }
+  /* 동작 줄이기: 트랜지션 토큰을 0으로 (모든 트랜지션은 duration-fast/base 토큰만 씀) */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-fast: 0ms;
+      --duration-base: 0ms;
+    }
+  }
+}
+
+/* 키보드 포커스 링: focus-visible에서만 */
+@utility focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface;
+}
